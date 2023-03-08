@@ -1,3 +1,7 @@
-nav {
+header {
   border: 1px solid red;
+}
+nav ul a {
+  margin-left: 1em;
+  text-transform: uppercase;
 }
