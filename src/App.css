@@ -1,1 +1,14 @@
-
+:root {
+  --header-height: 48px;
+  --footer-height: 74px;
+}
+.content_height_adjuster {
+  height: calc(100vh - var(--header-height) - var(--footer-height));
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1em;
+  margin: 0 auto;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
