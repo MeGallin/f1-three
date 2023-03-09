@@ -12,7 +12,7 @@ function App() {
     <Router>
       <div className="container">
         <HeaderComponent />
-        <Suspense fallback={'...loading'}>
+        <Suspense fallback={<span aria-busy="true">...loading</span>}>
           <div className="content_height_adjuster">
             <Routes>
               <Route path="/" element={<HomeView />} exact />
