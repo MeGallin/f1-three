@@ -1,7 +1,11 @@
-import React from 'react';
+import RaceResultsComponent from '../RaceResults/RaceResultsComponent';
 
 const HomeComponent = () => {
-  return <div>HomeComponent</div>;
+  return (
+    <>
+      <RaceResultsComponent />
+    </>
+  );
 };
 
 export default HomeComponent;
