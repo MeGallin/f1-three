@@ -6,6 +6,7 @@ import HeaderComponent from './Components/Header/HeaderComponent';
 
 const HomeView = lazy(() => import('./Views/Home/HomeView'));
 const AboutView = lazy(() => import('./Views/About/AboutView'));
+const RoundView = lazy(() => import('./Views/Round/RoundView'));
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
             <Routes>
               <Route path="/" element={<HomeView />} exact />
               <Route path="/about" element={<AboutView />} exact />
+              <Route path="/round" element={<RoundView />} exact />
             </Routes>
           </div>
         </Suspense>

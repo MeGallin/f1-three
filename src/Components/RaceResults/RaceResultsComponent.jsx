@@ -37,8 +37,6 @@ const RaceResultsComponent = () => {
   }, {});
   const winners = Object.values(result);
 
-  console.log(winners);
-
   return (
     <>
       {false ? 'Error component' : null}
@@ -48,7 +46,7 @@ const RaceResultsComponent = () => {
         <>
           <form onSubmit={handleForm} className="results-form">
             <label htmlFor="year">
-              Change the Year
+              CHANGE THE YEAR
               <input
                 type="number"
                 id="year"

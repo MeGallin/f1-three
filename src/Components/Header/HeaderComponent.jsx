@@ -1,4 +1,5 @@
 import { NavLink } from 'react-router-dom';
+import RoundsComponent from '../Rounds/RoundsComponent';
 import './HeaderComponent.css';
 
 const HeaderComponent = () => {
@@ -34,6 +35,7 @@ const HeaderComponent = () => {
             <li></li>
           </ul>
         </nav>
+        <RoundsComponent />
       </header>
     </>
   );
