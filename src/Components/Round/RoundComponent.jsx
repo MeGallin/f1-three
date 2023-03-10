@@ -1,7 +1,10 @@
+import { useParams } from 'react-router-dom';
 import './RoundComponent.css';
 
 const RoundComponent = () => {
-  return <div>RoundComponent</div>;
+  const params = useParams();
+
+  return <div>RoundComponent/ params {params.location}</div>;
 };
 
 export default RoundComponent;

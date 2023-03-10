@@ -14,6 +14,7 @@ import {
 
 const RoundsComponent = () => {
   //   const dispatch = useDispatch();
+
   const [showNavigation, setShowNavigation] = useToggle(false);
 
   const rounds = useSelector((state) => state.rounds);
@@ -49,7 +50,7 @@ const RoundsComponent = () => {
                 <li>
                   <NavLink
                     className={(navData) => (navData.isActive ? 'active' : '')}
-                    to={`/round`}
+                    to={`/round/${location}`}
                     data-cy="header-rounds-link"
                     onClick={setShowNavigation}
                   >

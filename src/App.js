@@ -18,7 +18,7 @@ function App() {
             <Routes>
               <Route path="/" element={<HomeView />} exact />
               <Route path="/about" element={<AboutView />} exact />
-              <Route path="/round" element={<RoundView />} exact />
+              <Route path="/round/:location" element={<RoundView />} />
             </Routes>
           </div>
         </Suspense>
