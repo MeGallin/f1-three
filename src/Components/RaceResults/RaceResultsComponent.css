@@ -1,0 +1,30 @@
+.results-form {
+  width: 100%;
+}
+.results-summary {
+  width: 100%;
+  border: 1px solid var(--primary);
+  background-color: var(--background-color);
+  text-align: center;
+}
+.results-summary sub {
+  color: rgba(51, 51, 51, 0.5);
+}
+
+article {
+  margin: 0;
+  width: max-content;
+}
+article > header {
+  padding: 0;
+}
+article sup {
+  color: rgba(51, 51, 51, 0.5);
+  font-size: 0.6em;
+}
+article > footer {
+  padding: 0;
+}
+article footer p {
+  font-size: 0.6em;
+}
