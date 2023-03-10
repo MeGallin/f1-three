@@ -2,9 +2,11 @@ import { createStore, combineReducers, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { raceResultsReducer } from './Reducers/RaceResults';
+import { roundsReducer } from './Reducers/RoundReducers';
 
 const reducer = combineReducers({
   raceResults: raceResultsReducer,
+  rounds: roundsReducer,
 });
 
 const initialState = {};

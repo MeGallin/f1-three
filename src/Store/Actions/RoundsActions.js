@@ -1,21 +1,22 @@
 import axios from 'axios';
 import {
-  RACE_RESULTS_FAILURE,
-  RACE_RESULTS_REQUEST,
-  RACE_RESULTS_SUCCESS,
-} from '../Constants/RaceResults';
+  ROUNDS_FAILURE,
+  ROUNDS_REQUEST,
+  ROUNDS_SUCCESS,
+} from '../Constants/RoundsConstants';
 
-//GET: Race results
-export const raceResultsAction = (year) => async (dispatch) => {
+//GET: Rounds for the season
+export const roundsAction = (year) => async (dispatch) => {
+  console.log('action', year);
   try {
     dispatch({
-      type: RACE_RESULTS_REQUEST,
+      type: ROUNDS_REQUEST,
     });
 
     const options = {
       method: 'GET',
-      url: 'https://fia-formula-1-championship-statistics.p.rapidapi.com/api/standings/race-results',
-      params: { year: year },
+      url: 'https://fia-formula-1-championship-statistics.p.rapidapi.com/api/schedule/race-schedule',
+
       headers: {
         'X-RapidAPI-Key': process.env.REACT_APP_X_RapidAPI_Key,
         'X-RapidAPI-Host': process.env.REACT_APP_X_RapidAPI_Host,
@@ -23,10 +24,10 @@ export const raceResultsAction = (year) => async (dispatch) => {
     };
 
     const { data } = await axios.request(options);
-    dispatch({ type: RACE_RESULTS_SUCCESS, payload: data });
+    dispatch({ type: ROUNDS_SUCCESS, payload: data });
   } catch (error) {
     dispatch({
-      type: RACE_RESULTS_FAILURE,
+      type: ROUNDS_FAILURE,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message
