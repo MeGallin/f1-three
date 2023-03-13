@@ -37,3 +37,10 @@
   display: flex;
   justify-content: space-between;
 }
+
+input[type='text'].invalid {
+  border-left: crimson 6px solid;
+}
+input[type='text'].valid {
+  border-left: lightgreen 6px solid;
+}
