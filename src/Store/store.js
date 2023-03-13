@@ -3,10 +3,12 @@ import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { raceResultsReducer } from './Reducers/RaceResults';
 import { roundsReducer } from './Reducers/RoundReducers';
+import { raceResultReducer } from './Reducers/RaceResultReducers';
 
 const reducer = combineReducers({
   raceResults: raceResultsReducer,
   rounds: roundsReducer,
+  raceResult: raceResultReducer,
 });
 
 const initialState = {};
