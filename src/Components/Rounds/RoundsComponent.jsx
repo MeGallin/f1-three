@@ -32,7 +32,7 @@ const RoundsComponent = () => {
     // dispatch(roundsAction());
   }, []);
 
-  const raceLocations = raceCalendarEvents.map((location) => {
+  const raceLocations = raceCalendarEvents?.map((location) => {
     return location.location;
   });
   let uniqueRaceLocations = Array.from(new Set(raceLocations));

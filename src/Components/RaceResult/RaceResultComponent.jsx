@@ -1,23 +1,35 @@
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useParams } from 'react-router-dom';
 import './RaceResultComponent.css';
 
 import { raceResultAction } from '../../Store/Actions/RaceResultActions';
 
 import { raceResult } from '../../Utils/TempData/RaceResult';
 import { randomId } from '../../Utils/RandomId';
+import { yearRegExp } from '../../Utils/regEx';
 
 const RaceResultComponent = () => {
   const dispatch = useDispatch();
+  const params = useParams();
+  const [year, setYear] = useState(new Date().getFullYear());
+  const [round] = useState(params.location);
+
   useEffect(() => {
     //Dispatch Action (Year & round)
-    // dispatch(raceResultAction('2023', 'Bahrain'));
-  }, []);
-  //   const raceResult = useSelector((state) => state.raceResult);
+    // dispatch(raceResultAction(year, round));
+  }, [dispatch, year, round]);
+  // const raceResult = useSelector((state) => state.raceResult);
   const { loading, error, location, raceDate, raceResultsFiltered, title } =
     raceResult;
 
-  console.log(raceResult);
+  const handleYear = (e) => {
+    setYear(e.target.value);
+  };
+  const handleSubmitAction = () => {
+    //Dispatch Action (Year & round)
+    // dispatch(raceResultAction(year, round));
+  };
 
   return (
     <>
@@ -31,8 +43,26 @@ const RaceResultComponent = () => {
             <sub>{location}</sub>
           </h6>
           <h6>{raceDate}</h6>
+          <input
+            type="text"
+            id="year"
+            name="year"
+            value={year}
+            placeholder="CHANGE THE YEAR"
+            onChange={handleYear}
+            required
+            className={yearRegExp(year) ? 'valid' : 'invalid'}
+          />
+          <button
+            type="submit"
+            disabled={!yearRegExp(year)}
+            onClick={handleSubmitAction}
+          >
+            Submit
+          </button>
+
           <div className="race-result-wrapper">
-            {raceResultsFiltered.map((result) => (
+            {raceResultsFiltered?.map((result) => (
               <div key={randomId(8)} className="race-result">
                 <div className="race-result-circle">{result.pos}</div>
 
@@ -41,7 +71,7 @@ const RaceResultComponent = () => {
                   <sup>{result.no}</sup>
                 </h6>
                 <h6>{result.car}</h6>
-                <div class="points-laps-wrapper">
+                <div className="points-laps-wrapper">
                   <h6>
                     {' '}
                     {result.pts} <sub>points</sub>
