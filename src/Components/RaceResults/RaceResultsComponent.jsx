@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { raceResultsAction } from '../../Store/Actions/RaceResults';
 import './RaceResultsComponent.css';
 import moment from 'moment';
+import { yearRegExp } from '../../Utils/regEx';
 
 import { raceResultsData } from '../../Utils/TempData/RaceResults';
 
@@ -45,19 +46,24 @@ const RaceResultsComponent = () => {
       ) : (
         <>
           <form onSubmit={handleForm} className="results-form">
-            <label htmlFor="year">
-              CHANGE THE YEAR
-              <input
-                type="number"
-                id="year"
-                name="year"
-                value={year}
-                placeholder=" year"
-                onChange={(e) => handleYearInput(e)}
-                required
-              />
-            </label>
-            <button type="submit">Submit</button>
+            <div className="input-wrapper">
+              <label htmlFor="year">
+                CHANGE THE YEAR
+                <input
+                  type="text"
+                  id="year"
+                  name="year"
+                  value={year}
+                  placeholder=" year"
+                  onChange={(e) => handleYearInput(e)}
+                  required
+                  className={
+                    yearRegExp(year) ? 'input-bg valid' : 'input-bg invalid'
+                  }
+                />
+              </label>
+              <button type="submit">Submit</button>
+            </div>
           </form>
 
           <div className="results-summary border-temp">

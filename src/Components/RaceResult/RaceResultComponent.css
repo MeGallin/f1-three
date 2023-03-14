@@ -7,7 +7,9 @@
   margin: 0;
 }
 .race-result {
-  border: 1px solid var(--muted-border-color);
+  border: 1em solid var(--muted-border-color);
+  background-color: var(--background-color);
+
   width: 48%;
   margin: 0 auto;
   padding: 0.2em;
@@ -17,6 +19,7 @@
 }
 .race-result:nth-child(even) {
   background-color: var(--muted-color);
+
   margin-top: 2.5em;
 }
 .race-result:nth-child(even) h6 {
@@ -36,11 +39,4 @@
 .points-laps-wrapper {
   display: flex;
   justify-content: space-between;
-}
-
-input[type='text'].invalid {
-  border-left: crimson 6px solid;
-}
-input[type='text'].valid {
-  border-left: lightgreen 6px solid;
 }
