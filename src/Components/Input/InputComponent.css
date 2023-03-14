@@ -3,6 +3,7 @@
   background-color: var(--background-color);
   background-color: black;
   padding: 0 1em;
+  margin: 0.5em;
 }
 .input-wrapper label {
   color: white;

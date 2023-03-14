@@ -6,3 +6,8 @@
 .rounds-wrapper-ul {
   border-bottom: 1px solid var(--primary);
 }
+.rounds-button {
+  padding: 0;
+  margin: 0;
+  width: 50%;
+}

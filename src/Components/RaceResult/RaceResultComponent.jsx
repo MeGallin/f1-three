@@ -39,12 +39,7 @@ const RaceResultComponent = () => {
         <span aria-busy="true">...loading</span>
       ) : (
         <>
-          <h6 className="center-text">{title}</h6>
-
-          <h6 className="center-text">
-            {raceDate}
-            <sub>{location}</sub>
-          </h6>
+          <h6 className="center-text race-result-h6">{title}</h6>
 
           <InputComponent
             label={'CHANGE THE YEAR'}
@@ -60,6 +55,10 @@ const RaceResultComponent = () => {
             btnDisabled={!yearRegExp(year)}
             btnOnClick={handleSubmitAction}
           />
+          <h6 className="center-text race-result-h6">
+            {raceDate}
+            <sub>{location}</sub>
+          </h6>
 
           <div className="race-result-wrapper">
             {raceResultsFiltered?.map((result) => (

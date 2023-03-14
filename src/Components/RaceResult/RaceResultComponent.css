@@ -6,10 +6,12 @@
 .race-result-wrapper h6 {
   margin: 0;
 }
+.race-result-h6 {
+  color: black;
+}
 .race-result {
   border: 1em solid var(--muted-border-color);
   background-color: var(--background-color);
-
   width: 48%;
   margin: 0 auto;
   padding: 0.2em;

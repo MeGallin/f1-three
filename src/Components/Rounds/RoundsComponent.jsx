@@ -39,7 +39,11 @@ const RoundsComponent = () => {
 
   return (
     <>
-      <button type="button" onClick={setShowNavigation}>
+      <button
+        className="rounds-button"
+        type="button"
+        onClick={setShowNavigation}
+      >
         SELECT ROUND
       </button>
       {showNavigation ? (
