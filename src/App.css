@@ -15,26 +15,6 @@
   overflow-x: hidden;
 }
 
-.input-wrapper {
-  border: 10px solid var(--muted-border-color);
-  background-color: var(--background-color);
-  background-color: black;
-  padding: 0 1em;
-}
-.input-wrapper label {
-  color: white;
-}
-input[type='text'] {
-  background-color: white;
-  text-align: center;
-}
-input[type='text'].invalid {
-  border-left: crimson 6px solid;
-}
-input[type='text'].valid {
-  border-left: lightgreen 6px solid;
-}
-
 /* Helper classes */
 .small-text {
   font-size: 0.6em;
