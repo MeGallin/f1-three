@@ -38,28 +38,34 @@ const RaceResultComponent = () => {
         <span aria-busy="true">...loading</span>
       ) : (
         <>
-          <h6>
-            {title}
+          <h6 className="center-text">{title}</h6>
+
+          <h6 className="center-text">
+            {raceDate}
             <sub>{location}</sub>
           </h6>
-          <h6>{raceDate}</h6>
-          <input
-            type="text"
-            id="year"
-            name="year"
-            value={year}
-            placeholder="CHANGE THE YEAR"
-            onChange={handleYear}
-            required
-            className={yearRegExp(year) ? 'valid' : 'invalid'}
-          />
-          <button
-            type="submit"
-            disabled={!yearRegExp(year)}
-            onClick={handleSubmitAction}
-          >
-            Submit
-          </button>
+          <div className="input-wrapper">
+            <label htmlFor="year">CHANGE THE YEAR</label>
+            <input
+              type="text"
+              id="year"
+              name="year"
+              value={year}
+              placeholder="CHANGE THE YEAR"
+              onChange={handleYear}
+              required
+              className={
+                yearRegExp(year) ? 'input-bg valid' : 'input-bg invalid'
+              }
+            />
+            <button
+              type="submit"
+              disabled={!yearRegExp(year)}
+              onClick={handleSubmitAction}
+            >
+              SUBMIT
+            </button>
+          </div>
 
           <div className="race-result-wrapper">
             {raceResultsFiltered?.map((result) => (
