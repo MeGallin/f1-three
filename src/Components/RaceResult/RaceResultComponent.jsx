@@ -8,6 +8,7 @@ import { raceResultAction } from '../../Store/Actions/RaceResultActions';
 import { raceResult } from '../../Utils/TempData/RaceResult';
 import { randomId } from '../../Utils/RandomId';
 import { yearRegExp } from '../../Utils/regEx';
+import InputComponent from '../Input/InputComponent';
 
 const RaceResultComponent = () => {
   const dispatch = useDispatch();
@@ -44,28 +45,21 @@ const RaceResultComponent = () => {
             {raceDate}
             <sub>{location}</sub>
           </h6>
-          <div className="input-wrapper">
-            <label htmlFor="year">CHANGE THE YEAR</label>
-            <input
-              type="text"
-              id="year"
-              name="year"
-              value={year}
-              placeholder="CHANGE THE YEAR"
-              onChange={handleYear}
-              required
-              className={
-                yearRegExp(year) ? 'input-bg valid' : 'input-bg invalid'
-              }
-            />
-            <button
-              type="submit"
-              disabled={!yearRegExp(year)}
-              onClick={handleSubmitAction}
-            >
-              SUBMIT
-            </button>
-          </div>
+
+          <InputComponent
+            label={'CHANGE THE YEAR'}
+            type="text"
+            id="year"
+            name="year"
+            value={year}
+            placeholder="CHANGE THE YEAR"
+            onChange={handleYear}
+            required
+            className={yearRegExp(year) ? 'input-bg valid' : 'input-bg invalid'}
+            btnType="submit"
+            btnDisabled={!yearRegExp(year)}
+            btnOnClick={handleSubmitAction}
+          />
 
           <div className="race-result-wrapper">
             {raceResultsFiltered?.map((result) => (

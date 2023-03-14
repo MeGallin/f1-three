@@ -6,6 +6,7 @@ import moment from 'moment';
 import { yearRegExp } from '../../Utils/regEx';
 
 import { raceResultsData } from '../../Utils/TempData/RaceResults';
+import InputComponent from '../Input/InputComponent';
 
 const RaceResultsComponent = () => {
   const [year, setYear] = useState(new Date().getFullYear());
@@ -46,24 +47,21 @@ const RaceResultsComponent = () => {
       ) : (
         <>
           <form onSubmit={handleForm} className="results-form">
-            <div className="input-wrapper">
-              <label htmlFor="year">
-                CHANGE THE YEAR
-                <input
-                  type="text"
-                  id="year"
-                  name="year"
-                  value={year}
-                  placeholder=" year"
-                  onChange={(e) => handleYearInput(e)}
-                  required
-                  className={
-                    yearRegExp(year) ? 'input-bg valid' : 'input-bg invalid'
-                  }
-                />
-              </label>
-              <button type="submit">Submit</button>
-            </div>
+            <InputComponent
+              label={'CHANGE THE YEAR'}
+              type="text"
+              id="year"
+              name="year"
+              value={year}
+              placeholder="CHANGE THE YEAR"
+              onChange={(e) => handleYearInput(e)}
+              required
+              className={
+                yearRegExp(year) ? 'input-bg valid' : 'input-bg invalid'
+              }
+              btnType="submit"
+              btnDisabled={!yearRegExp(year)}
+            />
           </form>
 
           <div className="results-summary border-temp">
