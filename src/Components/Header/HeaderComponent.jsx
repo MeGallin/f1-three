@@ -26,10 +26,10 @@ const HeaderComponent = () => {
               {' '}
               <NavLink
                 className={(navData) => (navData.isActive ? 'active' : '')}
-                to="/about"
-                data-cy="header-about-link"
+                to="/calendar"
+                data-cy="header-calendar-link"
               >
-                about
+                calendar
               </NavLink>
             </li>
             <li></li>

@@ -10,7 +10,17 @@
 .results-summary sub {
   color: rgba(51, 51, 51, 0.5);
 }
-
+.race-results-wrapper {
+  border: 4px solid green;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8em;
+  justify-content: space-evenly;
+}
+.race-results-heading-wrapper {
+  display: flex;
+  gap: 1em;
+}
 article {
   margin: 0;
   width: max-content;
