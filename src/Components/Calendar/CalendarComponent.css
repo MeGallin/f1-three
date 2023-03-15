@@ -1,7 +1,19 @@
+.calendar-location-wrapper {
+  display: flex;
+  display: grid;
+  gap: 4px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
 .calendar-location {
+  border: 0.4em solid var(--muted-border-color);
+  background-color: white;
+}
+.calendar-location p {
   color: black;
   font-size: 1.2rem;
   opacity: 0.6;
+  text-align: center;
+  margin: 0;
 }
 .calendar-location:hover {
   opacity: 1;

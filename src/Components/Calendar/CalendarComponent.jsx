@@ -48,22 +48,23 @@ const CalendarComponent = () => {
         <h1>
           F1 Calendar <sub>[{moment().format('YYYY')}]</sub>{' '}
         </h1>
-        {filteredLocations?.map((location) => (
-          <div key={randomId(8)}>
-            <div onClick={() => handleShowInfo(location?.location)}>
-              <span
-                className={`${
-                  moment(location?.startDate) < moment()
-                    ? 'calendar-location calendar-event-done'
-                    : 'calendar-location'
-                }`}
-              >
-                {location?.location}
-              </span>
-            </div>
+        <div className="calendar-location-wrapper">
+          {filteredLocations?.map((location, i) => (
+            <div key={randomId(8)}>
+              <div onClick={() => handleShowInfo(location?.location)}>
+                <div
+                  className={`${
+                    moment(location?.startDate) < moment()
+                      ? 'calendar-location calendar-event-done'
+                      : 'calendar-location'
+                  }`}
+                >
+                  <div className="race-result-circle">{i + 1}</div>
+                  <p>{location?.location}</p>
+                </div>
+              </div>
 
-            {showInfoLocation === location.location ? (
-              <>
+              {showInfoLocation === location.location ? (
                 <fieldset className="fieldSet">
                   <legend>{location.location || showInfoLocation}</legend>
                   <div className="location-info-wrapper">
@@ -95,50 +96,10 @@ const CalendarComponent = () => {
                     </div>
                   </div>
                 </fieldset>
-              </>
-            ) : null}
-
-            {/* {showInfo?.map((info) =>
-              location?.location === info.location ? (
-                <div key={info.location}>
-                  <fieldset className="fieldSet">
-                    <legend>{location || info.location}</legend>
-                    <div className="location-info-wrapper">
-                      <h3>
-                        {' '}
-                        {info.summary}
-                        <sub>{info.organizer}</sub>
-                      </h3>
-                      {moment(info.startDate) < moment()
-                        ? 'Gone'
-                        : 'still coming'}
-                      <h3>
-                        RACE DAY in:{' '}
-                        <sup>
-                          {moment(info.startDate).diff(moment(), 'days')} days.
-                        </sup>
-                      </h3>
-                      <div className="location-info-dates-wrapper">
-                        <div>
-                          START:{' '}
-                          {moment(info.startDate).format(
-                            'dddd, MMMM Do YYYY, h:mm:ss a',
-                          )}
-                        </div>
-                        <div>
-                          END:{' '}
-                          {moment(info.endDate).format(
-                            'dddd, MMMM Do YYYY, h:mm:ss a',
-                          )}
-                        </div>
-                      </div>
-                    </div>
-                  </fieldset>
-                </div>
-              ) : null,
-            )} */}
-          </div>
-        ))}
+              ) : null}
+            </div>
+          ))}
+        </div>
       </div>
     </>
   );

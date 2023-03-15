@@ -27,16 +27,6 @@
   color: white;
 }
 
-.race-result-circle {
-  width: 1.4em;
-  height: 1.4em;
-  line-height: 1.4em;
-  border-radius: 50%;
-  font-size: 0.8em;
-  color: #fff;
-  text-align: center;
-  background: #000;
-}
 .points-laps-wrapper {
   display: flex;
   justify-content: space-between;
