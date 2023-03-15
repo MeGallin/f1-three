@@ -83,33 +83,38 @@ const RaceResultsComponent = () => {
             </div>
           </div>
 
-          {raceResultsData?.map((result) => (
-            <div key={result.grandPrix}>
-              <article>
-                <h4>
-                  {result.grandPrix}
-                  <sub>
-                    <small>GP</small>
-                  </sub>
-                </h4>
+          <div className="race-results-wrapper">
+            {raceResultsData?.map((result, i) => (
+              <div key={result.grandPrix}>
+                <article>
+                  <div className="race-results-heading-wrapper">
+                    <div className="race-result-circle">{i + 1}</div>
+                    <h4>
+                      {result.grandPrix}
+                      <sub>
+                        <small>GP</small>
+                      </sub>
+                    </h4>
+                  </div>
 
-                <h4>
-                  <sup>winner</sup> {result.winner.firstname}{' '}
-                  {result.winner.lastname}
-                </h4>
-                <h4>
-                  <sup>Team</sup> {result.car}
-                </h4>
-                <h5>
-                  <sup>Laps</sup> {result.laps}
-                </h5>
+                  <h4>
+                    <sup>winner</sup> {result.winner.firstname}{' '}
+                    {result.winner.lastname}
+                  </h4>
+                  <h4>
+                    <sup>Team</sup> {result.car}
+                  </h4>
+                  <h5>
+                    <sup>Laps</sup> {result.laps}
+                  </h5>
 
-                <p className="small-text">
-                  {moment(result.date).format('MMMM Do YYYY, h:mm a')}
-                </p>
-              </article>
-            </div>
-          ))}
+                  <p className="small-text">
+                    {moment(result.date).format('MMMM Do YYYY, h:mm a')}
+                  </p>
+                </article>
+              </div>
+            ))}
+          </div>
         </>
       )}
     </>

@@ -21,7 +21,6 @@
 }
 .race-result:nth-child(even) {
   background-color: var(--muted-color);
-
   margin-top: 2.5em;
 }
 .race-result:nth-child(even) h6 {

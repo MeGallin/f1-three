@@ -1,0 +1,33 @@
+.calendar-location {
+  color: black;
+  font-size: 1.2rem;
+  opacity: 0.6;
+}
+.calendar-location:hover {
+  opacity: 1;
+  cursor: pointer;
+  transition: all 0.8s ease-in-out;
+}
+
+.calendar-event-done {
+  text-decoration: line-through;
+  color: var(--color);
+}
+.location-info-wrapper {
+  padding: 0.8em;
+}
+.location-info-wrapper h3 sub {
+  font-size: 0.6rem;
+  margin-left: 1em;
+  color: aqua;
+}
+.location-info-wrapper h3 sup {
+  margin-left: 1em;
+  color: aqua;
+}
+.location-info-dates-wrapper {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  color: aqua;
+}

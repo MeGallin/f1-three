@@ -5,8 +5,8 @@ import FooterComponent from './Components/Footer/FooterComponent';
 import HeaderComponent from './Components/Header/HeaderComponent';
 
 const HomeView = lazy(() => import('./Views/Home/HomeView'));
-const AboutView = lazy(() => import('./Views/About/AboutView'));
 const RoundView = lazy(() => import('./Views/Round/RoundView'));
+const CalendarView = lazy(() => import('./Views/Calendar/CalendarView'));
 
 function App() {
   return (
@@ -17,7 +17,7 @@ function App() {
           <div className="content_height_adjuster">
             <Routes>
               <Route path="/" element={<HomeView />} exact />
-              <Route path="/about" element={<AboutView />} exact />
+              <Route path="/calendar" element={<CalendarView />} exact />
               <Route path="/round/:location" element={<RoundView />} />
             </Routes>
           </div>
