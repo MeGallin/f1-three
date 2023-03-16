@@ -8,12 +8,16 @@ import {
   nextRoundEvents,
   raceCalendarEvents,
 } from '../../Utils/TempData/rounds';
+import FlagsComponent from '../Flags/FlagsComponent';
 
 const CalendarComponent = () => {
   const [showInfo, setShowInfo] = useState([{}]);
 
   const raceLocations = raceCalendarEvents?.map((location) => {
-    return { location: location.location, startDate: location.startDate };
+    return {
+      location: location.location,
+      startDate: location.startDate,
+    };
   });
   const uniqueRaceLocations = Array.from(new Set(raceLocations));
 
@@ -48,6 +52,7 @@ const CalendarComponent = () => {
         <h1>
           F1 Calendar <sub>[{moment().format('YYYY')}]</sub>{' '}
         </h1>
+
         <div className="calendar-location-wrapper">
           {filteredLocations?.map((location, i) => (
             <div key={randomId(8)}>
@@ -61,6 +66,8 @@ const CalendarComponent = () => {
                 >
                   <div className="race-result-circle">{i + 1}</div>
                   <p>{location?.location}</p>
+
+                  <FlagsComponent location={location.location} />
                 </div>
               </div>
 
@@ -77,7 +84,10 @@ const CalendarComponent = () => {
                     <h3>
                       RACE DAY in:{' '}
                       <sup>
-                        {moment(startDate).diff(moment(), 'days')} days.
+                        {moment(startDate).diff(moment(), 'days') < 1
+                          ? 'Event done'
+                          : moment(startDate).diff(moment(), 'days')}{' '}
+                        days.
                       </sup>
                     </h3>
                     <div className="location-info-dates-wrapper">
