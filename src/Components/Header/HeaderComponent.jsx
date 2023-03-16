@@ -32,6 +32,16 @@ const HeaderComponent = () => {
                 calendar
               </NavLink>
             </li>
+            <li>
+              {' '}
+              <NavLink
+                className={(navData) => (navData.isActive ? 'active' : '')}
+                to="/drivers"
+                data-cy="header-drivers-link"
+              >
+                drivers
+              </NavLink>
+            </li>
             <li></li>
           </ul>
         </nav>

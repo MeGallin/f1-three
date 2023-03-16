@@ -7,6 +7,7 @@ import HeaderComponent from './Components/Header/HeaderComponent';
 const HomeView = lazy(() => import('./Views/Home/HomeView'));
 const RoundView = lazy(() => import('./Views/Round/RoundView'));
 const CalendarView = lazy(() => import('./Views/Calendar/CalendarView'));
+const DriversView = lazy(() => import('./Views/Drivers/DriversView'));
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
             <Routes>
               <Route path="/" element={<HomeView />} exact />
               <Route path="/calendar" element={<CalendarView />} exact />
+              <Route path="/drivers" element={<DriversView />} exact />
               <Route path="/round/:location" element={<RoundView />} />
             </Routes>
           </div>
