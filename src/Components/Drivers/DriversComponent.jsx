@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import './DriversComponent.css';
 import {
   driverDetailsAction,
   driversAction,
@@ -7,38 +8,37 @@ import {
 import { randomId } from '../../Utils/RandomId';
 
 import { drivers, driverDetails } from '../../Utils/TempData/drivers';
+import FlagsComponent from '../Flags/FlagsComponent';
+import ModalComponent from '../Modal/ModalComponent';
 
 const DriversComponent = () => {
   const dispatch = useDispatch();
 
-  //   const drivers = useSelector((state) => state.drivers);
+  // const drivers = useSelector((state) => state.drivers);
   const { loading, error, drivers: driversData } = drivers;
 
   useEffect(() => {
     //Dispatch Action
-    // dispatch(driversAction());
-  }, [dispatch, drivers]);
+    if (!driverDetails) {
+      // dispatch(driversAction());
+    }
+  }, [dispatch]);
 
-  const handleDriversDetails = (driversName) => {
+  const handleDriversDetails = (e, driversName) => {
+    e.stopPropagation();
     //Action to fetch driver details
     const fullNameString = Object.values(driversName)
       .join('')
       .toLocaleLowerCase();
     // dispatch(driverDetailsAction(fullNameString));
-    const {
-      loading: driverDetailsLoading,
-      error: driverDetailsError,
-      driverDetails: driverDetailsData,
-    } = driverDetails;
-    console.log(driverDetailsData);
   };
 
-  //   const driverDetails = useSelector((state) => state.driverDetails);
-  //   const {
-  //     loading: driverDetailsLoading,
-  //     error: driverDetailsError,
-  //     driverDetails: driverDetailsData,
-  //   } = driverDetails;
+  // const driverDetails = useSelector((state) => state.driverDetails);
+  const {
+    loading: driverDetailsLoading,
+    error: driverDetailsError,
+    driverDetails: driverDetailsData,
+  } = driverDetails;
 
   return (
     <>
@@ -58,16 +58,62 @@ const DriversComponent = () => {
               <tr key={randomId(8)}>
                 <td>{driver?.rank}</td>
                 <td>
-                  <span
-                    onClick={() =>
-                      handleDriversDetails({
+                  <div
+                    onClick={(e) =>
+                      handleDriversDetails(e, {
                         name: driver?.firstname,
                         lastName: driver?.lastname,
                       })
                     }
                   >
-                    {driver?.firstname} {driver?.lastname}
-                  </span>
+                    <ModalComponent
+                      closeButtonTitle="Close"
+                      openButtonTitle={
+                        driver?.firstname + ' ' + driver?.lastname
+                      }
+                      title="DRIVER DETAILS"
+                      content={
+                        <>
+                          <div className="driver-modal-personal-details">
+                            <FlagsComponent
+                              location={driverDetailsData?.country}
+                            />
+                            <h6>
+                              {driverDetailsData?.firstname}{' '}
+                              {driverDetailsData?.lastname}
+                            </h6>
+                            <div>
+                              {driverDetailsData?.country} {''}{' '}
+                              {driverDetailsData?.placeOfBirth}
+                            </div>{' '}
+                            <div>{driverDetailsData?.dateOfBirth} </div>
+                          </div>
+
+                          <div className="driver-modal-race-details">
+                            <p>
+                              World Titles:{' '}
+                              {driverDetailsData?.worldChampionships}
+                            </p>
+                            <p>Podiums: {driverDetailsData?.podiums}</p>
+                            <p>
+                              Highest race finishes:{' '}
+                              {driverDetailsData?.highestRaceFinish}
+                            </p>
+                            <p>
+                              Highest grid position:{' '}
+                              {driverDetailsData?.highestGridPosition}
+                            </p>
+                            <p>
+                              GP's entered:
+                              {driverDetailsData?.grandsPrixEntered}
+                            </p>
+
+                            <p>Current Team: {driverDetailsData?.team}</p>
+                          </div>
+                        </>
+                      }
+                    />
+                  </div>
                 </td>
                 <td>{driver?.points}</td>
               </tr>
