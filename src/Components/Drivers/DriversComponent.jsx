@@ -6,10 +6,10 @@ import {
   driversAction,
 } from '../../Store/Actions/DriversActions';
 import { randomId } from '../../Utils/RandomId';
-
-import { drivers, driverDetails } from '../../Utils/TempData/drivers';
 import FlagsComponent from '../Flags/FlagsComponent';
 import ModalComponent from '../Modal/ModalComponent';
+// Temp data
+import { drivers, driverDetails } from '../../Utils/TempData/drivers';
 
 const DriversComponent = () => {
   const dispatch = useDispatch();
