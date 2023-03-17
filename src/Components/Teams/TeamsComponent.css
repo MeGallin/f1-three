@@ -1,0 +1,23 @@
+.team-modal-content-wrapper {
+  padding: 0.2em;
+}
+
+.team-modal-content-wrapper h6 {
+  margin: 0;
+}
+.team-modal-content-wrapper p {
+  margin: 0;
+}
+.modal-content-wrapper {
+  border-bottom: 1px solid var(--secondary);
+}
+.modal-content-wrapper:last-of-type {
+  border-bottom: none;
+}
+
+.modal-content-wrapper h6 {
+  margin: 0;
+}
+.modal-content-wrapper p {
+  margin: 0;
+}

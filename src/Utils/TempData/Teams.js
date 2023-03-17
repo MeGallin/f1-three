@@ -215,3 +215,36 @@ export const teams = {
   ],
   httpStatusCode: 200,
 };
+
+export const team = {
+  loading: false,
+  success: true,
+  teamDetails: {
+    base: 'Grove, United Kingdom',
+    teamChief: 'James Vowles',
+    technicalChief: 'TBC',
+    chassis: 'FW45',
+    powerUnit: 'Mercedes',
+    firstTeamEntry: '1978',
+    worldChampionships: '9',
+    highestRaceFinish: '1 (x114)',
+    polePositions: '128',
+    fastestLaps: '133',
+    rank: null,
+    points: null,
+    teamName: 'Williams Racing',
+    drivers: [
+      {
+        firstname: 'Alexander',
+        lastname: 'Albon',
+        abbr: null,
+      },
+      {
+        firstname: 'Logan',
+        lastname: 'Sargeant',
+        abbr: null,
+      },
+    ],
+  },
+  httpStatusCode: 200,
+};
