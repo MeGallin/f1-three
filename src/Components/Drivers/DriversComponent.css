@@ -1,0 +1,9 @@
+.driver-modal-personal-details {
+  border-bottom: 1px solid var(--muted-border-color);
+  display: flex;
+  justify-content: space-around;
+}
+.driver-modal-race-details {
+  border: 1px solid var(--muted-border-color);
+  padding: 0 0.2em;
+}
