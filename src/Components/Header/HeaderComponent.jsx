@@ -9,11 +9,6 @@ const HeaderComponent = () => {
         <nav>
           <ul>
             <li>
-              <strong>Brand</strong>
-            </li>
-          </ul>
-          <ul>
-            <li>
               <NavLink
                 className={(navData) => (navData.isActive ? 'active' : '')}
                 to="/"
@@ -42,7 +37,16 @@ const HeaderComponent = () => {
                 drivers
               </NavLink>
             </li>
-            <li></li>
+            <li>
+              {' '}
+              <NavLink
+                className={(navData) => (navData.isActive ? 'active' : '')}
+                to="/teams"
+                data-cy="header-teams-link"
+              >
+                teams
+              </NavLink>
+            </li>
           </ul>
         </nav>
         <RoundsComponent />

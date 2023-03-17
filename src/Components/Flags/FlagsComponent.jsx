@@ -4,10 +4,12 @@ const FlagsComponent = ({ location }) => {
     if (flag.country === location) {
       return flag;
     }
+    return false;
   });
 
   return (
     <img
+      aria-busy="true"
       src={flagSrc[0].path}
       alt={location}
       style={{

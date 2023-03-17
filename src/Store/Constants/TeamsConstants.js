@@ -1,0 +1,3 @@
+export const TEAMS_REQUEST = 'TEAMS_REQUEST';
+export const TEAMS_SUCCESS = 'TEAMS_SUCCESS';
+export const TEAMS_FAILURE = 'TEAMS_FAILURE';
