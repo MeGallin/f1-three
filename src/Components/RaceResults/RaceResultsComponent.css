@@ -5,13 +5,9 @@
   width: 100%;
   border: 1px solid var(--primary);
   background-color: var(--background-color);
-  text-align: center;
 }
-.results-summary sub {
-  color: rgba(51, 51, 51, 0.5);
-}
+
 .race-results-wrapper {
-  border: 4px solid green;
   display: flex;
   flex-wrap: wrap;
   gap: 0.8em;

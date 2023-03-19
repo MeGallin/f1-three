@@ -2,42 +2,32 @@ import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { raceResultsAction } from '../../Store/Actions/RaceResults';
 import './RaceResultsComponent.css';
-import moment from 'moment';
-import { yearRegExp } from '../../Utils/regEx';
 
-import { raceResultsData } from '../../Utils/TempData/RaceResults';
+import { yearRegExp } from '../../Utils/regEx';
+import { randomId } from '../../Utils/RandomId';
 import InputComponent from '../Input/InputComponent';
+import FlagsComponent from '../Flags/FlagsComponent';
+
+//Temp data
+import { raceResults } from '../../Utils/TempData/RaceResults';
 
 const RaceResultsComponent = () => {
   const [year, setYear] = useState(new Date().getFullYear());
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    // dispatch(raceResultsAction(year));
+  }, [dispatch, year]);
+
   // const raceResults = useSelector((state) => state.raceResults);
-  // const { loading, error, success, raceResults: raceResultsData } = raceResults;
+  const { loading, error, raceResults: raceResultsData } = raceResults;
 
   const handleYearInput = (e) => {
     setYear(e.target.value);
   };
   const handleForm = (e) => {
     e.preventDefault();
-    // dispatch(raceResultsAction(year));
   };
-
-  const result = raceResultsData.reduce((acc, curr) => {
-    const winnerKey = `${curr.winner.abbr} ${curr.winner.firstname} ${curr.winner.lastname}`;
-    if (acc[winnerKey]) {
-      acc[winnerKey].wins += 1;
-    } else {
-      acc[winnerKey] = {
-        abbr: curr.winner.abbr,
-        firstname: curr.winner.firstname,
-        lastname: curr.winner.lastname,
-        wins: 1,
-      };
-    }
-    return acc;
-  }, {});
-  const winners = Object.values(result);
 
   return (
     <>
@@ -63,58 +53,36 @@ const RaceResultsComponent = () => {
               btnDisabled={!yearRegExp(year)}
             />
           </form>
-
-          <div className="results-summary border-temp">
-            <h6>Summary for {year}</h6>
-            <div className="grid ">
-              {winners.map((wins) => (
-                <div key={wins.abbr}>
-                  <h6>
-                    {wins.firstname} {wins.lastname}
-                  </h6>
-                  <h5>
-                    {wins.wins}
-                    <sub>
-                      <small>wins</small>
-                    </sub>
-                  </h5>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="race-results-wrapper">
-            {raceResultsData?.map((result, i) => (
-              <div key={result.grandPrix}>
-                <article>
-                  <div className="race-results-heading-wrapper">
-                    <div className="race-result-circle">{i + 1}</div>
-                    <h4>
-                      {result.grandPrix}
-                      <sub>
-                        <small>GP</small>
-                      </sub>
-                    </h4>
-                  </div>
-
-                  <h4>
-                    <sup>winner</sup> {result.winner.firstname}{' '}
-                    {result.winner.lastname}
-                  </h4>
-                  <h4>
-                    <sup>Team</sup> {result.car}
-                  </h4>
-                  <h5>
-                    <sup>Laps</sup> {result.laps}
-                  </h5>
-
-                  <p className="small-text">
-                    {moment(result.date).format('MMMM Do YYYY, h:mm a')}
-                  </p>
-                </article>
-              </div>
-            ))}
-          </div>
+          <fieldset className="fieldSet">
+            <legend>Results</legend>
+            <table role="grid">
+              <thead>
+                <tr>
+                  <th scope="col">ROUND</th>
+                  <th scope="col">DATE</th>
+                  <th scope="col">WINNER</th>
+                  <th scope="col">LAPS</th>
+                  <th scope="col">TIME</th>
+                </tr>
+              </thead>
+              <tbody>
+                {raceResultsData?.map((result) => (
+                  <tr key={randomId(8)}>
+                    <td>
+                      <FlagsComponent location={result?.grandPrix} />
+                      {result?.grandPrix}
+                    </td>
+                    <td>{result?.date}</td>
+                    <td>
+                      {result?.winner.firstname} {result?.winner.lastname}
+                    </td>
+                    <td>{result?.laps}</td>
+                    <td>{result?.time}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </fieldset>
         </>
       )}
     </>

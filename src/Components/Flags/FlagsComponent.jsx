@@ -10,7 +10,7 @@ const FlagsComponent = ({ location }) => {
   return (
     <img
       aria-busy="true"
-      src={flagSrc[0].path}
+      src={flagSrc[0]?.path}
       alt={location}
       style={{
         border: '1px solid black',
