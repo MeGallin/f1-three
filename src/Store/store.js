@@ -7,6 +7,7 @@ import { raceResultReducer } from './Reducers/RaceResultReducers';
 import {
   driverDetailsReducer,
   driversReducer,
+  driverStandingsReducer,
 } from './Reducers/DriversReducers';
 import { teamReducer, teamsReducer } from './Reducers/TeamsReducers';
 
@@ -16,6 +17,7 @@ const reducer = combineReducers({
   raceResult: raceResultReducer,
   drivers: driversReducer,
   driverDetails: driverDetailsReducer,
+  driverStandings: driverStandingsReducer,
   teams: teamsReducer,
   team: teamReducer,
 });

@@ -37,7 +37,7 @@ const TeamsComponent = () => {
         <table role="grid">
           <thead>
             <tr>
-              <th scope="col">STANDINGS</th>
+              <th scope="col">TEAM</th>
               <th scope="col">DRIVERS</th>
               <th scope="col">PTS</th>
             </tr>
