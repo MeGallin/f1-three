@@ -7,9 +7,11 @@ import { yearRegExp } from '../../Utils/regEx';
 import { randomId } from '../../Utils/RandomId';
 import InputComponent from '../Input/InputComponent';
 import FlagsComponent from '../Flags/FlagsComponent';
+import moment from 'moment';
 
 //Temp data
 import { raceResults } from '../../Utils/TempData/RaceResults';
+import DriverStandingsComponent from '../DriversStandings/DriverStandingsComponent';
 
 const RaceResultsComponent = () => {
   const [year, setYear] = useState(new Date().getFullYear());
@@ -36,6 +38,7 @@ const RaceResultsComponent = () => {
         '...loading'
       ) : (
         <>
+          <DriverStandingsComponent />
           <form onSubmit={handleForm} className="results-form">
             <InputComponent
               label={'CHANGE THE YEAR'}
@@ -72,7 +75,7 @@ const RaceResultsComponent = () => {
                       <FlagsComponent location={result?.grandPrix} />
                       {result?.grandPrix}
                     </td>
-                    <td>{result?.date}</td>
+                    <td>{moment(result?.date).format('LL')}</td>
                     <td>
                       {result?.winner.firstname} {result?.winner.lastname}
                     </td>

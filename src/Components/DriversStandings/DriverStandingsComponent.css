@@ -1,0 +1,10 @@
+.graph-wrapper {
+  border: 0.4em solid white;
+  padding: 0 1em;
+  margin: 0.5em;
+  background-color: black;
+}
+
+.recharts-cartesian-axis-tick-value {
+  font-size: 0.6rem;
+}
