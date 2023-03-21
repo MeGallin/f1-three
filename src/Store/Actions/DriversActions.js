@@ -72,7 +72,8 @@ export const driverDetailsAction = (driversName) => async (dispatch) => {
 };
 
 //GET: Driver standings
-export const driverStandingsAction = (year) => async (dispatch) => {
+export const driverStandingsAction = () => async (dispatch) => {
+  //https://ergast.com/api/f1/2023/driverStandings.json?callback
   try {
     dispatch({
       type: DRIVERS_STANDINGS_REQUEST,
@@ -80,13 +81,7 @@ export const driverStandingsAction = (year) => async (dispatch) => {
 
     const options = {
       method: 'GET',
-      url: `https://fia-formula-1-championship-statistics.p.rapidapi.com/api/standings/drivers-standings`,
-      params: { year: year },
-
-      headers: {
-        'X-RapidAPI-Key': process.env.REACT_APP_X_RapidAPI_Key,
-        'X-RapidAPI-Host': process.env.REACT_APP_X_RapidAPI_Host,
-      },
+      url: `../../assets/data/standings.json`,
     };
 
     const { data } = await axios.request(options);
