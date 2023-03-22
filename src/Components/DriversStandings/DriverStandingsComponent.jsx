@@ -37,8 +37,6 @@ const DriverStandingsComponent = () => {
     return false;
   });
 
-  console.log(standingData);
-
   const BarWithBorder = (borderHeight, borderColor) => {
     return (props) => {
       const { fill, x, y, width, height } = props;
