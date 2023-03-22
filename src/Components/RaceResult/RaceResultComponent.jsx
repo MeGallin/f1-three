@@ -3,7 +3,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import './RaceResultComponent.css';
 
-import { raceResultAction } from '../../Store/Actions/RaceResultActions';
+import {
+  raceResultAction,
+  latestRaceResultAction,
+} from '../../Store/Actions/RaceResultActions';
 
 import { raceResult } from '../../Utils/TempData/RaceResult';
 import { randomId } from '../../Utils/RandomId';
@@ -12,25 +15,21 @@ import InputComponent from '../Input/InputComponent';
 
 const RaceResultComponent = () => {
   const dispatch = useDispatch();
-  const params = useParams();
-  const [year, setYear] = useState(new Date().getFullYear());
-  const [round] = useState(params.location);
+
+  const latestRaceResult = useSelector((state) => state.latestRaceResult);
+  const { loading, error, MRData } = latestRaceResult;
+
+  console.log(MRData);
 
   useEffect(() => {
-    //Dispatch Action (Year & round)
-    // dispatch(raceResultAction(year, round));
-  }, [dispatch, year, round]);
-  // const raceResult = useSelector((state) => state.raceResult);
-  const { loading, error, location, raceDate, raceResultsFiltered, title } =
-    raceResult;
+    if (!MRData) {
+      dispatch(latestRaceResultAction());
+    }
+  }, [dispatch]);
 
-  const handleYear = (e) => {
-    setYear(e.target.value);
-  };
-  const handleSubmitAction = () => {
-    //Dispatch Action (Year & round)
-    // dispatch(raceResultAction(year, round));
-  };
+  const resultsData = MRData?.RaceTable?.Races.flatMap((data) => {
+    return data;
+  });
 
   return (
     <>
@@ -39,48 +38,60 @@ const RaceResultComponent = () => {
         <span aria-busy="true">...loading</span>
       ) : (
         <>
-          <h6 className="center-text race-result-h6">{title}</h6>
-
-          <InputComponent
-            label={'CHANGE THE YEAR'}
-            type="text"
-            id="year"
-            name="year"
-            value={year}
-            placeholder="CHANGE THE YEAR"
-            onChange={handleYear}
-            required
-            className={yearRegExp(year) ? 'input-bg valid' : 'input-bg invalid'}
-            btnType="submit"
-            btnDisabled={!yearRegExp(year)}
-            btnOnClick={handleSubmitAction}
-          />
-          <h6 className="center-text race-result-h6">
-            {raceDate}
-            <sub>{location}</sub>
-          </h6>
-
           <div className="race-result-wrapper">
-            {raceResultsFiltered?.map((result) => (
-              <div key={randomId(8)} className="race-result">
-                <div className="race-result-circle">{result.pos}</div>
-
-                <h6>
-                  {result.driver.slice(0, -4)}
-                  <sup>{result.no}</sup>
+            {resultsData?.map((result) => (
+              <div key={randomId(8)}>
+                <h6 className="center-text race-result-h6">
+                  {result?.raceName}{' '}
+                  <sub>
+                    Round {result?.round} of {result?.season}
+                  </sub>
+                  <sup>{result?.Circuit.circuitName}</sup>
                 </h6>
-                <h6>{result.car}</h6>
-                <div className="points-laps-wrapper">
-                  <h6>
-                    {' '}
-                    {result.pts} <sub>points</sub>
-                  </h6>
-                  <h6>
-                    {result.laps} <sub>laps</sub>
-                  </h6>
-                </div>
-
-                <h6>{result.time_Retired}</h6>
+                <h6 className="center-text race-result-h6">
+                  {result?.Circuit.circuitName} <sub>{result?.date}</sub>
+                  <sup>{result?.time}</sup>
+                </h6>
+                <fieldset className="fieldSet">
+                  <legend>Result</legend>
+                  <div className="wrapper">
+                    {result?.Results?.map((driverRes) => (
+                      <div key={randomId(8)} className="item">
+                        <div className="race-result-circle">
+                          {driverRes.position}
+                        </div>
+                        # {driverRes?.number}
+                        points:
+                        {driverRes?.points}
+                        {[driverRes.Driver].map((driver) => (
+                          <div key={randomId(8)}>
+                            {driver?.code}
+                            {driver?.givenName}
+                            {driver?.dateOfBirth}
+                            {driver?.nationality}
+                            {driver?.permanentNumber}
+                          </div>
+                        ))}
+                        {[driverRes.Constructor].map((constructor) => (
+                          <div key={randomId(8)}>
+                            {constructor?.name}
+                            {constructor?.nationality}
+                          </div>
+                        ))}
+                        {[driverRes?.Time?.time]}
+                        {[driverRes.FastestLap].map((fastestLap) => (
+                          <div key={randomId(8)}>
+                            {fastestLap?.AverageSpeed?.speed}
+                            {fastestLap?.AverageSpeed?.units}
+                            time: {fastestLap?.Time?.time}
+                            lap: {fastestLap?.lap}
+                            rank: {fastestLap?.rank}
+                          </div>
+                        ))}
+                      </div>
+                    ))}
+                  </div>
+                </fieldset>
               </div>
             ))}
           </div>
