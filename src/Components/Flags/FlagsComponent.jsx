@@ -15,8 +15,6 @@ const FlagsComponent = ({ location }) => {
       style={{
         border: '1px solid black',
         margin: '2px',
-        display: 'flex',
-        width: 'auto',
         height: '32px',
       }}
     />

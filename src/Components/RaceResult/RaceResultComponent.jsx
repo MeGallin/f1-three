@@ -12,6 +12,8 @@ import { raceResult } from '../../Utils/TempData/RaceResult';
 import { randomId } from '../../Utils/RandomId';
 import { yearRegExp } from '../../Utils/regEx';
 import InputComponent from '../Input/InputComponent';
+import FlagsComponent from '../Flags/FlagsComponent';
+import TeamLogos from '../TeamLogos/TeamLogos';
 
 const RaceResultComponent = () => {
   const dispatch = useDispatch();
@@ -41,53 +43,84 @@ const RaceResultComponent = () => {
           <div className="race-result-wrapper">
             {resultsData?.map((result) => (
               <div key={randomId(8)}>
-                <h6 className="center-text race-result-h6">
-                  {result?.raceName}{' '}
-                  <sub>
-                    Round {result?.round} of {result?.season}
-                  </sub>
-                  <sup>{result?.Circuit.circuitName}</sup>
-                </h6>
-                <h6 className="center-text race-result-h6">
-                  {result?.Circuit.circuitName} <sub>{result?.date}</sub>
-                  <sup>{result?.time}</sup>
-                </h6>
                 <fieldset className="fieldSet">
-                  <legend>Result</legend>
+                  <legend>{result?.raceName}</legend>
+                  <div className="small-text">
+                    Round {result?.round} of {result?.season}{' '}
+                    {result?.Circuit.circuitName} {result?.date}
+                  </div>
                   <div className="wrapper">
                     {result?.Results?.map((driverRes) => (
                       <div key={randomId(8)} className="item">
-                        <div className="race-result-circle">
-                          {driverRes.position}
+                        <div className="result-container">
+                          <div className="column">
+                            <div className="cell">
+                              <h1>{driverRes.position}</h1>
+                            </div>
+                          </div>
+
+                          <div className="column ">
+                            <div className="cell ">
+                              {[driverRes.Driver].map((driver) => (
+                                <div key={randomId(8)}>
+                                  <h6>
+                                    Driver <sub>{driverRes?.number}</sub>
+                                  </h6>
+                                  <div>
+                                    {driver?.givenName} {driver?.familyName}
+                                  </div>
+
+                                  <div className="flex-wrapper">
+                                    <div className="small-text">
+                                      {driver.code} [{driver?.permanentNumber}]
+                                    </div>
+                                    <div>
+                                      <FlagsComponent
+                                        location={driver?.nationality}
+                                      />
+                                    </div>
+                                  </div>
+
+                                  <div className="constructor-wrapper">
+                                    {[driverRes.Constructor].map(
+                                      (constructor) => (
+                                        <div key={randomId(8)}>
+                                          <TeamLogos team={constructor?.name} />
+                                        </div>
+                                      ),
+                                    )}
+                                  </div>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+
+                          <div className="column">
+                            {/* <div className="cell">Stats</div> */}
+                            <div className="cell">
+                              <h6>Stats</h6>
+                              <div>Points: {driverRes?.points}</div>
+
+                              {[driverRes.FastestLap].map((fastestLap) => (
+                                <div key={randomId(8)}>
+                                  <div>Rank: {fastestLap?.rank}</div>
+                                  <div className="small-text">
+                                    Fastest lap: {fastestLap?.lap}
+                                  </div>
+                                  <div className="small-text">
+                                    Time: {fastestLap?.Time?.time}
+                                  </div>
+                                  <div className="small-text">
+                                    {' '}
+                                    {fastestLap?.AverageSpeed?.speed}{' '}
+                                    {fastestLap?.AverageSpeed?.units}
+                                  </div>
+                                </div>
+                              ))}
+                              {[driverRes?.Time?.time]}
+                            </div>
+                          </div>
                         </div>
-                        # {driverRes?.number}
-                        points:
-                        {driverRes?.points}
-                        {[driverRes.Driver].map((driver) => (
-                          <div key={randomId(8)}>
-                            {driver?.code}
-                            {driver?.givenName}
-                            {driver?.dateOfBirth}
-                            {driver?.nationality}
-                            {driver?.permanentNumber}
-                          </div>
-                        ))}
-                        {[driverRes.Constructor].map((constructor) => (
-                          <div key={randomId(8)}>
-                            {constructor?.name}
-                            {constructor?.nationality}
-                          </div>
-                        ))}
-                        {[driverRes?.Time?.time]}
-                        {[driverRes.FastestLap].map((fastestLap) => (
-                          <div key={randomId(8)}>
-                            {fastestLap?.AverageSpeed?.speed}
-                            {fastestLap?.AverageSpeed?.units}
-                            time: {fastestLap?.Time?.time}
-                            lap: {fastestLap?.lap}
-                            rank: {fastestLap?.rank}
-                          </div>
-                        ))}
                       </div>
                     ))}
                   </div>
