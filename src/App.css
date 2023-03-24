@@ -4,7 +4,7 @@
 }
 .content_height_adjuster {
   background-color: var(--background-color);
-  background-color: rgba(220, 220, 220, 0.6);
+  background-color: rgba(220, 220, 220, 0.3);
   height: calc(100vh - var(--header-height) - var(--footer-height));
   margin: 0 auto;
   overflow-y: auto;
@@ -24,9 +24,10 @@
 
 fieldset.fieldSet {
   display: block;
-  border: 1px solid var(--primary);
+  border: 1px solid var(--muted-color);
   background-color: var(--background-color);
   background-color: var(--muted-color);
+  background-color: transparent;
   flex-grow: 1;
 }
 fieldset legend {
@@ -43,4 +44,8 @@ fieldset legend {
   color: #fff;
   text-align: center;
   background: #000;
+}
+.flex-wrapper {
+  display: flex;
+  justify-content: space-between;
 }
